@@ -24,7 +24,7 @@ export default function Home() {
             <li><a href="#">Noticias</a></li>
             <li><a href="#">Trailer</a></li>
             <li><a href="#">Eventos</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><Link href="/contacto">Contacto</Link></li>
           </ul>
         </nav>
 
@@ -75,7 +75,7 @@ export default function Home() {
             <li><a href="#">Eventos</a></li>
             <li><a href="#">Historia</a></li>
             <li><a href="#">Programas</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><Link href="/contacto">Contacto</Link></li>
             <li><a href="#">Miembros</a></li>
             <li><a href="#">Noticias</a></li>
             <li><a href="#">Premios</a></li>
