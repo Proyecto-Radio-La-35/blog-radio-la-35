@@ -25,6 +25,7 @@ export default function Contacto() {
                     <li><a href="#">Trailer</a></li>
                     <li><a href="#">Eventos</a></li>
                     <li><Link href="/contacto">Contacto</Link></li>
+                    <li><Link href="/login">Acceder</Link></li>
                 </ul>
                 </nav>
 
