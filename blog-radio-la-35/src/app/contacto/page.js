@@ -26,7 +26,7 @@ export default function Contacto() {
 
                 <nav className={`nav ${menuActive ? "active" : ""}`} id="menu">
                 <ul>
-                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Historia</a></li>
                     <li><a href="#">Miembros</a></li>
@@ -100,7 +100,7 @@ export default function Contacto() {
 
                 <nav className="footer-nav">
                 <ul>
-                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Eventos</a></li>
                     <li><a href="#">Historia</a></li>

@@ -96,7 +96,7 @@ export default function Login() {
 
         <nav className={`nav ${menuActive ? "active" : ""}`} id="menu">
           <ul>
-            <li><a href="#">Sobre nosotros</a></li>
+            <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Historia</a></li>
             <li><a href="#">Miembros</a></li>
