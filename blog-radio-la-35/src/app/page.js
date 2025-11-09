@@ -2,11 +2,23 @@
 
 import "./page.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Home() {
   const [menuActive, setMenuActive] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) setIsLoggedIn(true);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    setIsLoggedIn(false);
+  };
+
 
   return (
     <div>
@@ -25,7 +37,24 @@ export default function Home() {
             <li><a href="#">Trailer</a></li>
             <li><a href="#">Eventos</a></li>
             <li><Link href="/contacto">Contacto</Link></li>
-            <li><Link href="/login">Acceder</Link></li>
+            {isLoggedIn ? (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "white",
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Cerrar sesión
+                </button>
+              </li>
+            ) : (
+              <li><Link href="/login">Acceder</Link></li>
+            )}
           </ul>
         </nav>
 

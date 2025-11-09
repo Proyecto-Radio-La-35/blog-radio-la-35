@@ -3,7 +3,8 @@
 import "./page.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
@@ -12,13 +13,72 @@ export default function Login() {
 
   const [menuActive, setMenuActive] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLoginSubmit = (e) => {
+  const router = useRouter();
+
+  // Verificar si está guardada la sesión
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) setIsLoggedIn(true);
+  }, []);
+
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const res = await fetch("http://localhost:4000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+
+      if (res.ok && data.session?.access_token) {
+        localStorage.setItem("access_token", data.session.access_token);
+        alert("Inicio de sesión exitoso");
+        router.push("/"); // Redirigir al inicio tras iniciar sesión
+      } else {
+        alert(data.error || "Error al iniciar sesión");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const res = await fetch("http://localhost:4000/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Tras registrarse exitosamente, se intenta iniciar sesión automáticamente
+        const loginRes = await fetch("http://localhost:4000/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const loginData = await loginRes.json();
+
+        if (loginRes.ok && loginData.session?.access_token) {
+          localStorage.setItem("access_token", loginData.session.access_token);
+          alert("Cuenta creada e inicio de sesión exitoso");
+          router.push("/"); // Redirige a la página principal
+        } else {
+          alert("Cuenta creada, pero no se pudo iniciar sesión automáticamente");
+        }
+      } else {
+        alert(data.error || "Error al registrarse");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -46,7 +106,25 @@ export default function Login() {
             <li><a href="#">Trailer</a></li>
             <li><a href="#">Eventos</a></li>
             <li><Link href="/contacto">Contacto</Link></li>
-            <li><Link href="/login">Acceder</Link></li>
+
+            {isLoggedIn ? (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "white",
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Cerrar sesión
+                </button>
+              </li>
+            ) : (
+              <li><Link href="/login">Acceder</Link></li>
+            )}
           </ul>
         </nav>
 
@@ -60,19 +138,15 @@ export default function Login() {
             <h2>Iniciar sesión</h2>
 
             <form onSubmit={handleLoginSubmit}>
-              <input type="email" placeholder="Correo" required value={email} onChange={(e) => setEmail(e.target.value)}/>
-              <input type="password" placeholder="Contraseña" required value={password}  onChange={(e) => setPassword(e.target.value)}/>
+              <input type="email" placeholder="Correo" required value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} />
 
               <button type="submit" className="btn">Iniciar sesión</button>
             </form>
 
-
             <p className="switch-text">
               ¿No tienes cuenta?{" "}
-              <button
-                className="switch-btn"
-                onClick={() => setShowLogin(false)}
-              >
+              <button className="switch-btn" onClick={() => setShowLogin(false)}>
                 Registrarte
               </button>
             </p>
@@ -82,19 +156,16 @@ export default function Login() {
             <h2>Crear cuenta</h2>
 
             <form onSubmit={handleRegisterSubmit}>
-              <input type="text" placeholder="Nombre" required value={userName} onChange={(e) => setUserName(e.target.value)}/>
-              <input type="email" placeholder="Correo" required value={email} onChange={(e) => setEmail(e.target.value)}/>
-              <input type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <input type="text" placeholder="Nombre" required value={userName} onChange={(e) => setUserName(e.target.value)} />
+              <input type="email" placeholder="Correo" required value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} />
 
               <button type="submit" className="btn">Registrarse</button>
             </form>
 
             <p className="switch-text">
               ¿Ya tienes una cuenta?{" "}
-              <button
-                className="switch-btn"
-                onClick={() => setShowLogin(true)}
-              >
+              <button className="switch-btn" onClick={() => setShowLogin(true)}>
                 Iniciar sesión
               </button>
             </p>
