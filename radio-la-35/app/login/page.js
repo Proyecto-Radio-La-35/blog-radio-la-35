@@ -14,9 +14,17 @@ export default function Login() {
   const [menuActive, setMenuActive] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const router = useRouter();
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    const adminFlag = localStorage.getItem("is_admin");
+    if (token) setIsLoggedIn(true);
+    if (adminFlag === "true") setIsAdmin(true);
+  }, []);
 
   // Verificar si está guardada la sesión
   useEffect(() => {
@@ -48,19 +56,26 @@ export default function Login() {
 
           const data = await res.json(); 
 
-          if (data.session?.access_token) {
-              localStorage.setItem("access_token", data.session.access_token);
-              alert("¡Inicio de sesión exitoso!");
-              router.push("/"); // Redirige a la página principal
-          } else {
-              alert("Fallo en el inicio de sesión: Respuesta incompleta.");
+          if (res.ok && data.session?.access_token) {
+            localStorage.setItem("access_token", data.session.access_token);
+            localStorage.setItem("user_email", email);
+
+            if (data.isAdmin) {
+              localStorage.setItem("is_admin", "true");
+            } else {
+              localStorage.removeItem("is_admin");
+            }
+
+            alert("Inicio de sesión exitoso");
+            router.push("/");
           }
-          
-      } catch (error) {
-          console.error("Error de red o procesamiento:", error);
-          alert("Ocurrió un error al intentar iniciar sesión.");
-      }
-  };
+          else {
+            alert(data.error || "Error al iniciar sesión");
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      };
 
   const handleRegisterSubmit = async (e) => {
       e.preventDefault();
@@ -81,10 +96,29 @@ export default function Login() {
           const data = await res.json(); 
 
           if (data.user) {
-              alert("¡Registro exitoso!");
-              router.push("/"); // Redirige a la página principal
-          } else {
-              alert("Fallo en el registro: Datos no válidos.");
+            const loginRes = await fetch(`${API_URL}/auth/login`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+            });
+            const loginData = await loginRes.json();
+
+            if (loginRes.ok && loginData.session?.access_token) {
+              localStorage.setItem("access_token", loginData.session.access_token);
+              localStorage.setItem("user_email", email);
+
+              if (loginData.isAdmin) {
+                localStorage.setItem("is_admin", "true");
+              } else {
+                localStorage.removeItem("is_admin");
+              }
+
+              alert("Cuenta creada e inicio de sesión exitoso");
+              router.push("/");
+            }
+          }
+          else {
+            alert("Fallo en el registro: Datos no válidos.");
           }
           
       } catch (error) {
@@ -108,6 +142,9 @@ export default function Login() {
 
         <nav className={`nav ${menuActive ? "active" : ""}`} id="menu">
           <ul>
+            {isAdmin && (
+              <li><Link href="/administrador">Administrador</Link></li>
+              )}
             <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Historia</a></li>

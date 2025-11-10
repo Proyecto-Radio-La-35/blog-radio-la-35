@@ -9,6 +9,15 @@ export default function Home() {
   const [menuActive, setMenuActive] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    const adminFlag = localStorage.getItem("is_admin");
+    if (token) setIsLoggedIn(true);
+    if (adminFlag === "true") setIsAdmin(true);
+  }, []);
+
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) setIsLoggedIn(true);
@@ -16,7 +25,11 @@ export default function Home() {
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
+    localStorage.removeItem("user_email");
+    localStorage.removeItem("is_admin");
     setIsLoggedIn(false);
+    setIsAdmin(false);
+    router.push("/"); // opcional: volver al inicio
   };
 
 
@@ -27,6 +40,9 @@ export default function Home() {
 
         <nav className={`nav ${menuActive ? "active" : ""}`} id="menu">
           <ul>
+            {isAdmin && (
+              <li><Link href="/administrador">Administrador</Link></li>
+              )}
             <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Historia</a></li>
