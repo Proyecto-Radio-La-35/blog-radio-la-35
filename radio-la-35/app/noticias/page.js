@@ -5,11 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import "./page.css"
 
-export default function Blog() {
+export default function Noticias() {
     const [menuActive, setMenuActive] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-    const [entradas, setEntradas] = useState([]);
+    const [noticias, setNoticias] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -23,21 +23,21 @@ export default function Blog() {
     }, []);
 
     useEffect(() => {
-        cargarEntradas();
+        cargarNoticias();
     }, []);
 
-    const cargarEntradas = async () => {
+    const cargarNoticias = async () => {
         try {
-            const res = await fetch(`${API_URL}/contenido?tipo=entrada`);
+            const res = await fetch(`${API_URL}/contenido?tipo=noticia`);
             const data = await res.json();
 
             if (res.ok) {
-                setEntradas(data.data || []);
+                setNoticias(data.data || []);
             } else {
-                setError("Error al cargar las entradas");
+                setError("Error al cargar las noticias");
             }
         } catch (err) {
-            console.error("Error al cargar entradas:", err);
+            console.error("Error al cargar noticias:", err);
             setError("Error de conexión");
         } finally {
             setIsLoading(false);
@@ -110,12 +110,12 @@ export default function Blog() {
 
             <main style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
                 <h1 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem' }}>
-                    Blog
+                    Noticias
                 </h1>
 
                 {isLoading ? (
                     <div style={{ textAlign: 'center', padding: '3rem', fontSize: '1.2rem' }}>
-                        Cargando entradas...
+                        Cargando noticias...
                     </div>
                 ) : error ? (
                     <div style={{ 
@@ -126,14 +126,14 @@ export default function Blog() {
                     }}>
                         {error}
                     </div>
-                ) : entradas.length === 0 ? (
+                ) : noticias.length === 0 ? (
                     <div style={{ 
                         textAlign: 'center', 
                         padding: '3rem', 
                         fontSize: '1.2rem',
                         color: '#666'
                     }}>
-                        No hay entradas de blog publicadas todavía.
+                        No hay noticias publicadas todavía.
                     </div>
                 ) : (
                     <div style={{ 
@@ -142,9 +142,9 @@ export default function Blog() {
                         gap: '2rem',
                         marginTop: '2rem'
                     }}>
-                        {entradas.map((entrada) => (
+                        {noticias.map((noticia) => (
                             <article 
-                                key={entrada.id}
+                                key={noticia.id}
                                 style={{
                                     backgroundColor: '#fff',
                                     borderRadius: '8px',
@@ -164,8 +164,8 @@ export default function Blog() {
                             >
                                 <div style={{ position: 'relative', height: '200px', backgroundColor: '#f0f0f0' }}>
                                     <Image 
-                                        src={entrada.imagen || "/radio_la_35.png"}
-                                        alt={entrada.titulo}
+                                        src={noticia.imagen || "/radio_la_35.png"}
+                                        alt={noticia.titulo}
                                         fill
                                         style={{ objectFit: 'cover' }}
                                     />
@@ -177,7 +177,7 @@ export default function Blog() {
                                         fontSize: '1.5rem',
                                         color: '#333'
                                     }}>
-                                        {entrada.titulo}
+                                        {noticia.titulo}
                                     </h2>
                                     
                                     <p style={{ 
@@ -185,7 +185,7 @@ export default function Blog() {
                                         fontSize: '0.9rem',
                                         marginBottom: '1rem'
                                     }}>
-                                        {formatearFecha(entrada.created_at)}
+                                        {formatearFecha(noticia.created_at)}
                                     </p>
                                     
                                     <p style={{ 
@@ -193,14 +193,14 @@ export default function Blog() {
                                         lineHeight: '1.6',
                                         marginBottom: '1rem'
                                     }}>
-                                        {entrada.contenido.length > 150 
-                                            ? entrada.contenido.substring(0, 150) + '...'
-                                            : entrada.contenido
+                                        {noticia.contenido.length > 150 
+                                            ? noticia.contenido.substring(0, 150) + '...'
+                                            : noticia.contenido
                                         }
                                     </p>
                                     
                                     <Link 
-                                        href={`/blog/${entrada.id}`}
+                                        href={`/noticias/${noticia.id}`}
                                         style={{
                                             display: 'inline-block',
                                             color: '#007bff',

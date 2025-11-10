@@ -45,7 +45,7 @@ export default function Contacto() {
                     <li><a href="#">Miembros</a></li>
                     <li><a href="#">Premios</a></li>
                     <li><a href="#">Programas</a></li>
-                    <li><a href="#">Noticias</a></li>
+                    <li><Link href="/noticias">Noticias</Link></li>
                     <li><a href="#">Trailer</a></li>
                     <li><a href="#">Eventos</a></li>
                     <li><Link href="/contacto">Contacto</Link></li>
@@ -120,7 +120,7 @@ export default function Contacto() {
                     <li><a href="#">Programas</a></li>
                     <li><Link href="/contacto">Contacto</Link></li>
                     <li><a href="#">Miembros</a></li>
-                    <li><a href="#">Noticias</a></li>
+                    <li><Link href="/noticias">Noticias</Link></li>
                     <li><a href="#">Premios</a></li>
                     <li><a href="#">Trailer</a></li>
                 </ul>
