@@ -60,6 +60,12 @@ export default function Login() {
             localStorage.setItem("access_token", data.session.access_token);
             localStorage.setItem("user_email", email);
 
+            if (data.userName) {
+              localStorage.setItem("user_name", data.userName); 
+            } else {
+              localStorage.removeItem("user_name");
+            }
+
             if (data.isAdmin) {
               localStorage.setItem("is_admin", "true");
             } else {
@@ -83,7 +89,7 @@ export default function Login() {
           const res = await fetch(`${API_URL}/auth/register`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, password }),
+              body: JSON.stringify({ email, password, userName }),
           });
 
           if (!res.ok) {
@@ -106,6 +112,12 @@ export default function Login() {
             if (loginRes.ok && loginData.session?.access_token) {
               localStorage.setItem("access_token", loginData.session.access_token);
               localStorage.setItem("user_email", email);
+
+              if (loginData.userName) {
+                localStorage.setItem("user_name", loginData.userName);
+              } else {
+                localStorage.removeItem("user_name");
+              }
 
               if (loginData.isAdmin) {
                 localStorage.setItem("is_admin", "true");
