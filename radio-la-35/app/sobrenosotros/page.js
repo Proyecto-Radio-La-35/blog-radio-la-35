@@ -41,7 +41,7 @@ export default function SobreNosotros() {
             <li><a href="#">Programas</a></li>
             <li><Link href="/noticias">Noticias</Link></li>
             <li><a href="#">Trailer</a></li>
-            <li><a href="#">Eventos</a></li>
+            <li><Link href="/eventos">Eventos</Link></li>
             <li><Link href="/contacto">Contacto</Link></li>
 
             {isLoggedIn ? (
@@ -169,7 +169,7 @@ export default function SobreNosotros() {
           <ul>
             <li><Link href="/sobre-nosotros">Sobre nosotros</Link></li>
             <li><Link href="/blog">Blog</Link></li>
-            <li><a href="#">Eventos</a></li>
+            <li><Link href="/eventos">Eventos</Link></li>
             <li><a href="#">Historia</a></li>
             <li><a href="#">Programas</a></li>
             <li><Link href="/contacto">Contacto</Link></li>

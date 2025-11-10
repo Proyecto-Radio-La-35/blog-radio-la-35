@@ -47,7 +47,7 @@ export default function Contacto() {
                     <li><a href="#">Programas</a></li>
                     <li><Link href="/noticias">Noticias</Link></li>
                     <li><a href="#">Trailer</a></li>
-                    <li><a href="#">Eventos</a></li>
+                    <li><Link href="/eventos">Eventos</Link></li>
                     <li><Link href="/contacto">Contacto</Link></li>
                     {isLoggedIn ? (
                         <li>
@@ -115,7 +115,7 @@ export default function Contacto() {
                 <ul>
                     <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
                     <li><Link href="/blog">Blog</Link></li>
-                    <li><a href="#">Eventos</a></li>
+                    <li><Link href="/eventos">Eventos</Link></li>
                     <li><a href="#">Historia</a></li>
                     <li><a href="#">Programas</a></li>
                     <li><Link href="/contacto">Contacto</Link></li>

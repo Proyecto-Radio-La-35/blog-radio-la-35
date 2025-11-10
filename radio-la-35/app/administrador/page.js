@@ -75,7 +75,7 @@ export default function Administrador() {
                         <li><a href="#">Programas</a></li>
                         <li><Link href="/noticias">Noticias</Link></li>
                         <li><a href="#">Trailer</a></li>
-                        <li><a href="#">Eventos</a></li>
+                        <li><Link href="/eventos">Eventos</Link></li>
                         <li><Link href="/contacto">Contacto</Link></li>
                         <li>
                             <button
