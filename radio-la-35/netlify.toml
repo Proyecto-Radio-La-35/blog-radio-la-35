@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+  base = "radio-la-35"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
