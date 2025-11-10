@@ -16,6 +16,8 @@ export const metadata = {
   description: "Sitio web de la radio de la Escuela Técnica N° 35",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
