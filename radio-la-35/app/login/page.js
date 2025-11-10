@@ -16,6 +16,7 @@ export default function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const router = useRouter();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   // Verificar si está guardada la sesión
   useEffect(() => {
@@ -24,61 +25,72 @@ export default function Login() {
   }, []);
 
   const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:4000/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
+      e.preventDefault();
+      try {
+          const res = await fetch(`${API_URL}/auth/login`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+          });
 
-      if (res.ok && data.session?.access_token) {
-        localStorage.setItem("access_token", data.session.access_token);
-        alert("Inicio de sesión exitoso");
-        router.push("/"); // Redirigir al inicio tras iniciar sesión
-      } else {
-        alert(data.error || "Error al iniciar sesión");
+          if (!res.ok) {
+              const errorBody = await res.text(); 
+              
+              try {
+                  const errorData = JSON.parse(errorBody);
+                  alert(`Fallo en el inicio de sesión: ${res.status} - ${errorData.error || "Error desconocido"}`);
+              } catch (e) {
+                  console.error("Respuesta no JSON:", errorBody);
+                  alert(`Fallo en el inicio de sesión: El servidor devolvió una respuesta no válida. Código: ${res.status}`);
+              }
+              return;
+          }
+
+          const data = await res.json(); 
+
+          if (data.session?.access_token) {
+              localStorage.setItem("access_token", data.session.access_token);
+              alert("¡Inicio de sesión exitoso!");
+              router.push("/"); // Redirige a la página principal
+          } else {
+              alert("Fallo en el inicio de sesión: Respuesta incompleta.");
+          }
+          
+      } catch (error) {
+          console.error("Error de red o procesamiento:", error);
+          alert("Ocurrió un error al intentar iniciar sesión.");
       }
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   const handleRegisterSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:4000/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      e.preventDefault();
+      try {
+          const res = await fetch(`${API_URL}/auth/register`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+          });
 
-      const data = await res.json();
+          if (!res.ok) {
+              const errorText = await res.text();
+              console.error("Error del servidor:", errorText);
+              alert(`Fallo en el registro: ${res.status} - ${errorText}`);
+              return; 
+          }
 
-      if (res.ok) {
-        // Tras registrarse exitosamente, se intenta iniciar sesión automáticamente
-        const loginRes = await fetch("http://localhost:4000/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        });
+          const data = await res.json(); 
 
-        const loginData = await loginRes.json();
-
-        if (loginRes.ok && loginData.session?.access_token) {
-          localStorage.setItem("access_token", loginData.session.access_token);
-          alert("Cuenta creada e inicio de sesión exitoso");
-          router.push("/"); // Redirige a la página principal
-        } else {
-          alert("Cuenta creada, pero no se pudo iniciar sesión automáticamente");
-        }
-      } else {
-        alert(data.error || "Error al registrarse");
+          if (data.user) {
+              alert("¡Registro exitoso!");
+              router.push("/"); // Redirige a la página principal
+          } else {
+              alert("Fallo en el registro: Datos no válidos.");
+          }
+          
+      } catch (error) {
+          console.error("Error de red o procesamiento:", error);
+          alert("Ocurrió un error al intentar registrarte.");
       }
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   return (
