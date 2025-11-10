@@ -40,7 +40,7 @@ export default function Contacto() {
                         <li><Link href="/administrador">Administrador</Link></li>
                         )}
                     <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><Link href="/blog">Blog</Link></li>
                     <li><a href="#">Historia</a></li>
                     <li><a href="#">Miembros</a></li>
                     <li><a href="#">Premios</a></li>
@@ -114,7 +114,7 @@ export default function Contacto() {
                 <nav className="footer-nav">
                 <ul>
                     <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><Link href="/blog">Blog</Link></li>
                     <li><a href="#">Eventos</a></li>
                     <li><a href="#">Historia</a></li>
                     <li><a href="#">Programas</a></li>

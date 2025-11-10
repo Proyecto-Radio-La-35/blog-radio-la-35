@@ -185,7 +185,7 @@ export default function Crear() {
                     <ul>
                         <li><Link href="/administrador">Administrador</Link></li>
                         <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><Link href="/blog">Blog</Link></li>
                         <li><a href="#">Historia</a></li>
                         <li><a href="#">Miembros</a></li>
                         <li><a href="#">Premios</a></li>

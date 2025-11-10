@@ -34,7 +34,7 @@ export default function SobreNosotros() {
         <nav className={`nav ${menuActive ? "active" : ""}`} id="menu">
           <ul>
             <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
-            <li><a href="#">Blog</a></li>
+            <li><Link href="/blog">Blog</Link></li>
             <li><a href="#">Historia</a></li>
             <li><a href="#">Miembros</a></li>
             <li><a href="#">Premios</a></li>
@@ -168,7 +168,7 @@ export default function SobreNosotros() {
         <nav className="footer-nav">
           <ul>
             <li><Link href="/sobre-nosotros">Sobre nosotros</Link></li>
-            <li><a href="#">Blog</a></li>
+            <li><Link href="/blog">Blog</Link></li>
             <li><a href="#">Eventos</a></li>
             <li><a href="#">Historia</a></li>
             <li><a href="#">Programas</a></li>
