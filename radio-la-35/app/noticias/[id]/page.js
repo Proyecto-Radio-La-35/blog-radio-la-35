@@ -144,7 +144,7 @@ export default function PublicacionDetalle() {
                 <p style={styles.tipo}>{getTipoLabel(publicacion.tipo)}</p>
                 <h1 style={styles.titulo}>{publicacion.titulo}</h1>
                 <p style={styles.meta}>
-                    Publicado el {formatearFecha(publicacion.created_at)} por **{publicacion.autor_email}**
+                  Publicado el {formatearFecha(publicacion.created_at)} por **{publicacion.nombre_usuario}**
                 </p>
 
                 {publicacion.imagen && (
