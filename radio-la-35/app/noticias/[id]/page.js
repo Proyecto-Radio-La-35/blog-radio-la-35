@@ -103,7 +103,7 @@ export default function PublicacionDetalle() {
               <li><a href="#">Premios</a></li>
               <li><a href="#">Programas</a></li>
               <li><Link href="/noticias">Noticias</Link></li>
-              <li><a href="#">Trailer</a></li>
+              <li><Link href="/trailer">Trailer</Link></li>
               <li><Link href="/eventos">Eventos</Link></li>
               <li><Link href="/contacto">Contacto</Link></li>
               {isLoggedIn ? (
