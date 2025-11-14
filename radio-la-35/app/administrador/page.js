@@ -12,6 +12,20 @@ export default function Administrador() {
     const [isAdmin, setIsAdmin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
+    const [adminEmailInput, setAdminEmailInput] = useState("");
+    const [adminsList, setAdminsList] = useState([]);
+    const userEmail = typeof window !== "undefined" ? localStorage.getItem("user_email") : null;
+
+    useEffect(() => {
+    async function fetchAdmins() {
+        const res = await fetch("/admins/list", {
+            headers: { "x-admin-email": userEmail }
+        });
+        const data = await res.json();
+        setAdminsList(data.admins);
+    }
+    fetchAdmins();
+    }, []);
 
     useEffect(() => {
         const token = localStorage.getItem("access_token");
@@ -36,6 +50,39 @@ export default function Administrador() {
         setIsAdmin(false);
         router.push("/");
     };
+
+    async function handleAddAdmin() {
+    const res = await fetch("/admins/add", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-admin-email": userEmail
+        },
+        body: JSON.stringify({ email: adminEmailInput })
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.error);
+
+    setAdminsList(data.admins);
+    setAdminEmailInput("");
+}
+
+async function handleRemoveAdmin(email) {
+    const res = await fetch("/admins/remove", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-admin-email": userEmail
+        },
+        body: JSON.stringify({ email })
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.error);
+
+    setAdminsList(data.admins);
+    }
 
     // Mostrar loading mientras verifica permisos
     if (isLoading) {
@@ -327,7 +374,31 @@ export default function Administrador() {
                         Comentarios
                         <span style={{ fontSize: '2rem', marginTop: '0.5rem' }}>−</span>
                     </Link>
+                    <br/>
 
+                    <div style={{ marginTop: "4rem" }}>
+                        <h3>Agregar administrador</h3>
+                        <br/>
+                        <input
+                            type="email"
+                            placeholder="Email del administrador"
+                            value={adminEmailInput}
+                            onChange={(e) => setAdminEmailInput(e.target.value)}
+                            style={{ padding: "0.5rem", width: "250px", marginRight: "1rem" }}
+                        />
+                        <button 
+                            onClick={handleAddAdmin}
+                            style={{
+                                padding: "0.5rem 1rem",
+                                backgroundColor: "#4caf50",
+                                color: "white",
+                                border: "none",
+                                cursor: "pointer"
+                            }}
+                        >
+                            Agregar
+                        </button>
+                    </div>
                 </div>
             </main>
         </div>
