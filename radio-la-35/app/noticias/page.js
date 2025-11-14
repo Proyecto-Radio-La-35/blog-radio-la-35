@@ -144,7 +144,7 @@ export default function Noticias() {
                     }}>
                         {noticias.map((noticia) => (
                             <article 
-                                key={noticia.id}
+                                key={noticia.id_publicacion}
                                 style={{
                                     backgroundColor: '#fff',
                                     borderRadius: '8px',
@@ -200,7 +200,7 @@ export default function Noticias() {
                                     </p>
                                     
                                     <Link 
-                                        href={`/noticias/${noticia.id}`}
+                                        href={`/noticias/${noticia.id_publicacion}`}
                                         style={{
                                             display: 'inline-block',
                                             color: '#007bff',

@@ -110,7 +110,7 @@ export default function Eventos() {
 
             <main style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
                 <h1 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem' }}>
-                    Blog
+                    Eventos
                 </h1>
 
                 {isLoading ? (
@@ -133,7 +133,7 @@ export default function Eventos() {
                         fontSize: '1.2rem',
                         color: '#666'
                     }}>
-                        No hay eventos de blog publicadas todavía.
+                        No hay eventos publicados todavía.
                     </div>
                 ) : (
                     <div style={{ 
@@ -144,7 +144,7 @@ export default function Eventos() {
                     }}>
                         {eventos.map((evento) => (
                             <article 
-                                key={evento.id}
+                                key={evento.id_publicacion}
                                 style={{
                                     backgroundColor: '#fff',
                                     borderRadius: '8px',
@@ -200,7 +200,7 @@ export default function Eventos() {
                                     </p>
                                     
                                     <Link 
-                                        href={`/blog/${evento.id}`}
+                                        href={`/eventos/${evento.id_publicacion}`}
                                         style={{
                                             display: 'inline-block',
                                             color: '#007bff',

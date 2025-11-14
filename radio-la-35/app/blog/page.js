@@ -144,7 +144,7 @@ export default function Blog() {
                     }}>
                         {entradas.map((entrada) => (
                             <article 
-                                key={entrada.id}
+                                key={entrada.publicacion_id}
                                 style={{
                                     backgroundColor: '#fff',
                                     borderRadius: '8px',
@@ -200,7 +200,7 @@ export default function Blog() {
                                     </p>
                                     
                                     <Link 
-                                        href={`/blog/${entrada.id}`}
+                                        href={`/blog/${entrada.id_publicacion}`}
                                         style={{
                                             display: 'inline-block',
                                             color: '#007bff',
