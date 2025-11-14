@@ -305,6 +305,29 @@ export default function Administrador() {
                         Evento
                         <span style={{ fontSize: '2rem', marginTop: '0.5rem' }}>−</span>
                     </Link>
+                    <Link 
+                        href="/eliminar?tipo=comentarios"
+                        style={{
+                            width: '150px',
+                            height: '150px',
+                            backgroundColor: '#ffebee',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            textDecoration: 'none',
+                            color: '#c62828',
+                            fontSize: '1.2rem',
+                            fontWeight: 'bold',
+                            border: '2px solid #ef5350',
+                            borderRadius: '8px',
+                            transition: 'transform 0.2s, background-color 0.2s'
+                        }}
+                    >
+                        Comentarios
+                        <span style={{ fontSize: '2rem', marginTop: '0.5rem' }}>−</span>
+                    </Link>
+
                 </div>
             </main>
         </div>

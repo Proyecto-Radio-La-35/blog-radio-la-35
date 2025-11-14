@@ -44,16 +44,24 @@ export default function EliminarContenido() {
     const cargarPublicaciones = async () => {
         setLoadingPublicaciones(true);
         try {
-            const response = await fetch(`${API_URL}/contenido?tipo=${tipo}`);
-            const data = await response.json();
-            
-            if (data.success) {
-                setPublicaciones(data.data);
+            let url;
+
+            if (tipo === "comentarios") {
+            url = `${API_URL}/comentarios/todos`;
             } else {
-                console.error("Error al cargar publicaciones:", data.error);
+            url = `${API_URL}/contenido?tipo=${tipo}`;
+            }
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.success) {
+            setPublicaciones(data.data);
+            } else {
+            console.error("Error al cargar:", data.error);
             }
         } catch (error) {
-            console.error("Error en la petición:", error);
+            console.error(error);
         } finally {
             setLoadingPublicaciones(false);
         }
@@ -65,12 +73,17 @@ export default function EliminarContenido() {
         const token = localStorage.getItem("access_token");
         
         try {
-            const response = await fetch(`${API_URL}/contenido/${selectedId}`, {
+            const response = await fetch(
+            tipo === "comentarios"
+                ? `${API_URL}/contenido/comentarios/${selectedId}`
+                : `${API_URL}/contenido/${selectedId}`,
+            {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
-            });
+            }
+        );
 
             const data = await response.json();
 
@@ -115,7 +128,7 @@ export default function EliminarContenido() {
         return null;
     }
 
-    if (!tipo || !["noticia", "entrada", "evento"].includes(tipo)) {
+    if (!tipo || !["noticia", "entrada", "evento", "comentarios"].includes(tipo)) {
         return (
             <div style={{ 
                 display: 'flex', 
@@ -222,16 +235,22 @@ export default function EliminarContenido() {
                             </thead>
                             <tbody>
                                 {publicaciones.map((pub) => (
-                                    <tr key={pub.id_publicacion} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                                        <td style={{ padding: '1rem' }}>{pub.id_publicacion}</td>
-                                        <td style={{ padding: '1rem' }}>{pub.titulo}</td>
-                                        <td style={{ padding: '1rem' }}>
-                                            {new Date(pub.created_at).toLocaleDateString('es-ES', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric'
-                                            })}
-                                        </td>
+                                    <tr key={tipo === "comentarios" ? pub.id_comentario : pub.id_publicacion}>
+                                    <td>
+                                        {tipo === "comentarios" ? pub.id_comentario : pub.id_publicacion}
+                                    </td>
+
+                                    <td>
+                                        {tipo === "comentarios"
+                                            ? pub.contenido.slice(0, 40) + "..."
+                                            : pub.titulo}
+                                    </td>
+
+                                    <td>
+                                        {tipo === "comentarios"
+                                            ? new Date(pub.fecha_comentario).toLocaleDateString("es-ES")
+                                            : new Date(pub.created_at).toLocaleDateString("es-ES")}
+                                    </td>
                                         <td style={{ padding: '1rem', textAlign: 'center' }}>
                                             <button
                                                 onClick={() => {
