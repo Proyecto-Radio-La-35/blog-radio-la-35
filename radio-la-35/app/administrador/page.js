@@ -203,6 +203,109 @@ export default function Administrador() {
                         <span style={{ fontSize: '2rem', marginTop: '0.5rem' }}>+</span>
                     </Link>
                 </div>
+
+                <h2 style={{ marginBottom: '2rem', marginTop: '4rem' }}>Eliminación</h2>
+
+                <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    gap: '2rem',
+                    flexWrap: 'wrap',
+                    marginTop: '3rem'
+                }}>
+                    <Link 
+                        href="/eliminar?tipo=noticia"
+                        style={{
+                            width: '150px',
+                            height: '150px',
+                            backgroundColor: '#ffebee',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            textDecoration: 'none',
+                            color: '#c62828',
+                            fontSize: '1.2rem',
+                            fontWeight: 'bold',
+                            border: '2px solid #ef5350',
+                            borderRadius: '8px',
+                            transition: 'transform 0.2s, background-color 0.2s'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.05)';
+                            e.currentTarget.style.backgroundColor = '#ffcdd2';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.backgroundColor = '#ffebee';
+                        }}
+                    >
+                        Noticia
+                        <span style={{ fontSize: '2rem', marginTop: '0.5rem' }}>−</span>
+                    </Link>
+
+                    <Link 
+                        href="/eliminar?tipo=entrada"
+                        style={{
+                            width: '150px',
+                            height: '150px',
+                            backgroundColor: '#ffebee',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            textDecoration: 'none',
+                            color: '#c62828',
+                            fontSize: '1.2rem',
+                            fontWeight: 'bold',
+                            border: '2px solid #ef5350',
+                            borderRadius: '8px',
+                            transition: 'transform 0.2s, background-color 0.2s'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.05)';
+                            e.currentTarget.style.backgroundColor = '#ffcdd2';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.backgroundColor = '#ffebee';
+                        }}
+                    >
+                        Entrada
+                        <span style={{ fontSize: '2rem', marginTop: '0.5rem' }}>−</span>
+                    </Link>
+
+                    <Link 
+                        href="/eliminar?tipo=evento"
+                        style={{
+                            width: '150px',
+                            height: '150px',
+                            backgroundColor: '#ffebee',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            textDecoration: 'none',
+                            color: '#c62828',
+                            fontSize: '1.2rem',
+                            fontWeight: 'bold',
+                            border: '2px solid #ef5350',
+                            borderRadius: '8px',
+                            transition: 'transform 0.2s, background-color 0.2s'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.05)';
+                            e.currentTarget.style.backgroundColor = '#ffcdd2';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'scale(1)';
+                            e.currentTarget.style.backgroundColor = '#ffebee';
+                        }}
+                    >
+                        Evento
+                        <span style={{ fontSize: '2rem', marginTop: '0.5rem' }}>−</span>
+                    </Link>
+                </div>
             </main>
         </div>
     )
