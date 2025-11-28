@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import "./page.css";
 
-export default function Miembros() {
+export default function Programas() {
  const [menuActive, setMenuActive] = useState(false);
  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -29,7 +29,7 @@ export default function Miembros() {
     localStorage.removeItem("is_admin");
     setIsLoggedIn(false);
     setIsAdmin(false);
-    router.push("/"); // opcional: volver al inicio
+    router.push("/");
   };
 
   return (
@@ -50,7 +50,7 @@ export default function Miembros() {
             <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
             <li><Link href="/blog">Blog</Link></li>
             <li><a href="#">Historia</a></li>
-            <li><a href="#">Miembros</a></li>
+            <li><Link href="/miembros">Miembros</Link></li>
             <li><Link href="/premios">Premios</Link></li>
             <li><Link href="/programas">Programas</Link></li>
             <li><Link href="/noticias">Noticias</Link></li>
@@ -84,50 +84,32 @@ export default function Miembros() {
       </header>
 
       <main className="contenido">
-          <section className="miembros-section">
-            <h1>Miembros de Radio La 35</h1>
+          <section className="programas-section">
+            <h1>Programas de Radio La 35</h1>
             <p className="intro">
-              Conocé al equipo que hace posible cada programa, entrevista y producción
-              de nuestra radio escolar 🎙️
+                Estos son los programas que conforman la radio. En ellos, principalmente encontrará discusión sobre noticias relevantes, temas generales e incluso entrevistas.
             </p>
 
-            <div className="miembros-grid">
-              {/* === Placeholders de miembros === */}
-              {/* <div className="miembro-card">
-                <Image src="/placeholder_persona.png" alt="Miembro" width={150} height={150} />
-                <h3>Nombre Apellido</h3>
-                <p className="rol">Locutor/a principal</p>
-                <p className="desc">
-                  Apasionado por la música y la comunicación. Conduce el programa “La Mañana en La 35”.
-                </p>
-              </div> */}
-
-              <div className="miembro-card">
-                <Image src="/guadalupe.png" alt="Miembro" width={200} height={200} />
-                <h3>Guadalupe Cortez</h3>
-                <p className="rol">Gestora de la radio</p>
-                <p className="desc">
-                  Es Profesora de Enseñanza Media y Superior en Historia, egresada de la UBA. También estudia Astrología en Casa XI. Tiene un posgrado en Gestión Cultural y Políticas Culturales (Unsam IDAES) y una diplomatura en geopolítica por la Universidad de Ciencias Sociales (UBA). Gestiona y coordina Radio La 35 con regularidad desde el 2019
-                </p>
+            <div className="programas-grid">
+              <div className="programa-card">
+                <Image src="/mercurio_retrogrado.png" alt="Logo de Mercurio Retrógrado" width={200} height={200} />
+                <h3>Mercurio Retrógrado</h3>
               </div>
 
-              <div className="miembro-card">
-                <Image src="/lizarraga.png" alt="Miembro" width={200} height={200} />
-                <h3>Lizarraga</h3>
-                <p className="rol">Gestor de la radio</p>
-                <p className="desc">
-                  Docente encargado de la coordinación de distintos eventos y entrevistas involucrando a la radio. También colaboró en el desarrollo del trailer de la radio, además de supervisar y ayudar en algunos episodios.
-                </p>
+              <div className="programa-card">
+                <Image src="/cafe_latzina.png" alt="Logo de Café Latzina" width={200} height={200} />
+                <h3>Café Latzina</h3>
               </div>
 
-              {/* <div className="miembro-card">
-                <Image src="/placeholder_persona.png" alt="Miembro" width={150} height={150} />
-                <h3>Nombre Apellido</h3>
-                <p className="rol">Editor/a</p>
-                <p className="desc">
-                  Edita los clips y videos para redes sociales, manteniendo el estilo de la radio.
-                </p>
-              </div> */}
+              <div className="programa-card">
+                <Image src="/el_duna_de_la_35.png" alt="Logo de El Duna de la 35" width={200} height={200} />
+                <h3>El Duna de la 35</h3>
+              </div>
+
+              <div className="programa-card">
+                <Image src="/si_lo_sabe_hable.png" alt="Logo de Si Lo Sabe, Hable" width={200} height={200} />
+                <h3>Si lo Sabe, Hable</h3>
+              </div>
             </div>
           </section>
       </main>
@@ -167,7 +149,7 @@ export default function Miembros() {
             <li><a href="#">Historia</a></li>
             <li><Link href="/programas">Programas</Link></li>
             <li><Link href="/contacto">Contacto</Link></li>
-            <li><a href="#">Miembros</a></li>
+            <li><Link href="/miembros">Miembros</Link></li>
             <li><Link href="/noticias">Noticias</Link></li>
             <li><Link href="/premios">Premios</Link></li>
             <li><Link href="/trailer">Trailer</Link></li>

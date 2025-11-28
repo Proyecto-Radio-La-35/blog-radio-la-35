@@ -45,7 +45,7 @@ export default function Trailer() {
             <li><a href="#">Historia</a></li>
             <li><a href="#">Miembros</a></li>
             <li><Link href="/premios">Premios</Link></li>
-            <li><a href="#">Programas</a></li>
+            <li><Link href="/programas">Programas</Link></li>
             <li><Link href="/noticias">Noticias</Link></li>
             <li><Link href="/trailer">Trailer</Link></li>
             <li><Link href="/eventos">Eventos</Link></li>
@@ -146,7 +146,7 @@ export default function Trailer() {
             <li><Link href="/blog">Blog</Link></li>
             <li><Link href="/eventos">Eventos</Link></li>
             <li><a href="#">Historia</a></li>
-            <li><a href="#">Programas</a></li>
+            <li><Link href="/programas">Programas</Link></li>
             <li><Link href="/contacto">Contacto</Link></li>
             <li><a href="#">Miembros</a></li>
             <li><Link href="/noticias">Noticias</Link></li>
