@@ -1,55 +1,54 @@
-# Radio la 35 — Pagina Web
+# Radio la 35 — Página Web
 
-Sitio web oficial de la radio de la Esc. Tecnica N°35 Ing. Eduardo Latzina.
+Sitio web oficial de la radio de la Escuela Técnica N°35 Ing. Eduardo Latzina.
 
-Esta pagina brinda informacion, acerca de la Radio de la 35, brindando sus redes sociales, compartiendo sus programas, eventos, premios, noticias, 
-informacion de los miembros que pertenecen al grupo de la radio, tambien mostrando su historia, como se creo la radio, como empezo, etc. 
+Esta página brinda informacion acerca de Radio La 35, mostrando sus redes sociales y compartiendo sus programas, eventos, premios y noticias. 
+También se encuentra información de los miembros que pertenecen al grupo de la radio y sobre la historia de la radio. 
 La página web de la Radio de la 35 se creó con el propósito de brindar un espacio digital donde se pueda compartir información actualizada sobre los programas, 
-actividades y proyectos de la radio. Su objetivo principal es ampliar la difusión, llegar a más personas dentro y fuera de la comunidad escolar y 
-fortalecer la presencia y reconocimiento de la radio. A través del sitio web, la radio busca hacerse más conocida, 
-comunicar sus contenidos de manera accesible y promover la participación estudiantil.
+actividades y proyectos de la radio. Su objetivo principal es ampliar la difusión, llegando a más personas dentro y fuera de la comunidad escolar, 
+fortalecer la presencia y reconocimiento de la radio, comunicar sus contenidos de manera accesible y promover la participación estudiantil.
 
-## Secciones de la pagina web
+## Secciones de la página web
 
-###  _Pagina de inicio_
-En esta seccion se muestra informacion,e imagenes acerca de la radio, algunos programas, su blog, y unas imagenes.
+###  _Página de inicio_
+En esta sección se muestra información e imágenes acerca de la radio, algunos programas, su blog, y algunas imágenes.
 
 ### _Sobre Nosotros_
-Esta seccion brinda mas informacion acerca de la radio sus antecedentes, las actividades que llega a abarcar y los temas que trata la radio mayormente en sus programas.
+Esta sección brinda más informacion acerca de la radio sus antecedentes, las actividades que llega a abarcar y los temas que trata la radio mayormente en sus programas.
 
 ### _Blog_
-Aca se mostraran los blogs actuales de la radio.
+En esta sección se muestran las entradas del blog de la radio.
 
 ### _Historia_
-Trata acerca de la historia de la radio desde como comenzo a como esta ahora en la actualidad.
+Trata acerca de la historia de la radio, desde sus inicios hasta la actualidad.
 
 ### _Miembros_
-En esta seccion se muestra informacion acerca de los profesores/estudiantes que participan de la radio.
+En esta sección se muestra información acerca de los profesores/estudiantes que participan de la radio.
 
 ### _Premios_
-En esta seccion se muestran los premios conseguidos por parte de la radio.
+En esta sección se muestran los premios conseguidos por parte de la radio.
 
 ### _Programas_
-En esta seccion se colocaran los programas especiales que haya tenido la radio, estos serian programas en especifico.
+En esta sección se encuentran los programas especiales que tiene / ha tenido la radio.
 
 ### _Noticias_
-Aca se pondran todas las noticias que incluyeron a la radio de la 35.
+Aquí se encuentran todas las noticias relevantes a la radio.
 
-### _Trailer_
-Aca va haber informacion acerca del trailer que le pertenece a la radio.
+### _Tráiler_
+Se presenta información acerca del tráiler perteneciente a la radio.
 
 ### _Eventos_
-Aca se pondran todos los eventos en los que la radio haya participado, o vaya a participar.
+Aquí se encuentran todos los eventos en los que la radio ha participado, o va a participar.
 
 ### _Contacto_
-Aca se podran contactar los usuarios con el email oficial de Radio la 35.
+Sección donde los usuarios registrados en el sitio pueden contactarse con la radio.
 
 ### _Acceder_
-Esta opcion sera para que los usuarios que aun no hayan iniciado sesion vayan directamente a eso, o vayan a registrar un nuevo usuario.
+Opción disponible para usuarios que no han iniciado sesión o no hayan creado una cuenta.
 
-## Como exportar este repositorio
+## Cómo exportar este repositorio
 
-1. Realizar la siguiente linea de codigo:
+1. En la terminal del editor de código donde se encuentre, realizar la siguiente línea de codigo:
   git clone https://github.com/Proyecto-Radio-La-35/blog-radio-la-35.git
 
-2. En VS code directamente utilizar el repositorio clonado o utilizar la URL para que VS code lo abra directamente.
+2. Tras haber clonado el repositorio, tendrá acceso a todos los archivos públicos y podrá empezar a hacer modificaciones. En caso de tener permiso, también podrá publicar esas modificaciones al repositorio.
