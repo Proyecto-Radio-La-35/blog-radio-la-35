@@ -176,45 +176,7 @@ export default function Crear() {
 
     return(
         <div>
-            <header className="header">
-                <Link href="/">
-                    <Image src="/radio_la_35.png" alt="Radio La 35" className="logo" width={70} height={70} />
-                </Link>
-
-                <nav className={`nav ${menuActive ? "active" : ""}`} id="menu">
-                    <ul>
-                        <li><Link href="/administrador">Administrador</Link></li>
-                        <li><Link href="/sobrenosotros">Sobre nosotros</Link></li>
-                        <li><Link href="/blog">Blog</Link></li>
-                        <li><a href="#">Historia</a></li>
-                        <li><Link href="/miembros">Miembros</Link></li>
-                        <li><Link href="/premios">Premios</Link></li>
-                        <li><Link href="/programas">Programas</Link></li>
-                        <li><Link href="/noticias">Noticias</Link></li>
-                        <li><Link href="/trailer">Trailer</Link></li>
-                        <li><Link href="/eventos">Eventos</Link></li>
-                        <li><Link href="/contacto">Contacto</Link></li>
-                        <li>
-                            <button
-                                onClick={handleLogout}
-                                style={{
-                                    background: "none",
-                                    border: "none",
-                                    color: "white",
-                                    cursor: "pointer",
-                                    fontWeight: "bold",
-                                }}
-                            >
-                                Cerrar sesión
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-
-                <button className="menu-icon" id="menu-btn" onClick={() => setMenuActive(true)}>☰</button>
-                <button className="cerrar-btn" id="cerrar-btn" onClick={() => setMenuActive(false)}>✕</button>
-            </header>
-
+            
             <main style={{ padding: '2rem', maxWidth: '900px', margin: '0 auto' }}>
                 <div style={{ marginBottom: '2rem' }}>
                     <Link 
