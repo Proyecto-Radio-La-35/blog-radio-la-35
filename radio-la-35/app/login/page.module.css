@@ -1,23 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: linear-gradient(to bottom, #2a1a72, #b02972);
-    color: white;
-}
-
-main {
-    width: 75%;
-    margin: auto;
-}
-
-/* ========== CONTENIDO ========== */
-
-.login-container {
+/* ===== LAYOUT ===== */
+.contenedor {
   min-height: calc(100vh - 90px);
   display: flex;
   align-items: center;
@@ -25,7 +7,8 @@ main {
   padding: 40px 20px;
 }
 
-.tarjeta {
+/* ===== CARD ===== */
+.card {
   background: rgba(0, 0, 0, 0.45);
   width: 90%;
   max-width: 380px;
@@ -34,12 +17,18 @@ main {
   text-align: center;
 }
 
-.tarjeta h2 {
+.titulo {
   margin-bottom: 25px;
   font-size: 22px;
 }
 
-.tarjeta input {
+/* ===== FORMULARIO ===== */
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
   width: 100%;
   padding: 12px;
   margin: 8px 0;
@@ -48,7 +37,8 @@ main {
   outline: none;
 }
 
-.btn {
+/* ===== BOTÓN ===== */
+.boton {
   width: 100%;
   margin: 15px 0;
   padding: 12px;
@@ -61,16 +51,17 @@ main {
   transition: background 0.3s;
 }
 
-.btn:hover {
+.boton:hover {
   background: #aa2d73;
 }
 
-.switch-text {
+/* ===== SWITCH ===== */
+.switchTexto {
   font-size: 14px;
   margin-top: 10px;
 }
 
-.switch-btn {
+.switchBoton {
   background: none;
   border: none;
   color: #d44994;
@@ -79,6 +70,6 @@ main {
   font-size: 14px;
 }
 
-.switch-btn:hover {
+.switchBoton:hover {
   text-decoration: underline;
 }

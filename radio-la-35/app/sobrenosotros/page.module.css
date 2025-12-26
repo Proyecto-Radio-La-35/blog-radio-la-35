@@ -1,0 +1,38 @@
+/* ========== CONTENIDO PRINCIPAL ========== */
+.main {
+  width: 75%;
+  margin: auto;
+  text-align: left;
+}
+
+/* ========== TÍTULO PRINCIPAL ========== */
+.titulo {
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+/* ========== SECCIONES ========== */
+.info {
+  margin-bottom: 32px;
+}
+
+.infoTitulo {
+  text-align: center;
+  font-size: 1.4em;
+  margin-top: 25px;
+  margin-bottom: 16px;
+}
+
+.parrafo {
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+
+.lista {
+  padding-left: 28px;
+}
+
+.listaItem {
+  margin-bottom: 8px;
+}

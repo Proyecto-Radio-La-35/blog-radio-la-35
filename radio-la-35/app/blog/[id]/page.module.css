@@ -1,0 +1,167 @@
+/* ===== LAYOUT ===== */
+.main {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.articulo {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* ===== ESTADOS ===== */
+.mensajeCarga {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.5rem;
+}
+
+.contenedorError {
+  text-align: center;
+  padding: 3rem;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.vacio {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* ===== NAVEGACIÓN ===== */
+.enlaceVolver {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.botonVolver {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* ===== CONTENIDO ===== */
+.tipo {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #6c757d;
+}
+
+.titulo {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== IMAGEN ===== */
+.wrapperImagen {
+  position: relative;
+  height: 450px;
+  margin-bottom: 1.5rem;
+}
+
+.imagen {
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* ===== TEXTO ===== */
+.contenido {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  white-space: pre-wrap;
+}
+
+/* ===== COMENTARIOS ===== */
+.comentarios {
+  margin-top: 3rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  color: black;
+}
+
+.tituloComentarios {
+  border-bottom: 2px solid #007bff;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== FORMULARIO ===== */
+.formComentario {
+  margin-bottom: 2rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.botonComentario {
+  margin-top: 0.75rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ===== LISTA ===== */
+.listaComentarios {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comentario {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-left: 3px solid #007bff;
+}
+
+.comentarioHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.autor {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.fecha {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+/* ===== LOGIN ===== */
+.loginAviso {
+  text-align: center;
+}
+
+.loginEnlace {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}

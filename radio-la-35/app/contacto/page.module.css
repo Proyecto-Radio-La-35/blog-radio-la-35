@@ -1,38 +1,39 @@
 /* ========== GENERAL ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: linear-gradient(to bottom, #2a1a72, #b02972);
-    color: white;
-}
-
-main {
+.contenidoPrincipal main {
     width: 75%;
     margin: auto;
 }
 
 /* ========== CONTENIDO ========== */
 
-h1 {
+.contenidoPrincipal h1 {
     text-align: center;
     margin-top: 16px;
     margin-bottom: 32px;
 }
 
-main div {
+.contenidoPrincipal main div {
     margin-bottom: 32px;
 }
 
-p {
+.contenidoPrincipal p {
     margin-bottom: 4px;
 }
 
-textarea, input {
+.contenidoPrincipal textarea {
+    height: 28px;
+    min-height: 28px;
+    padding: 4px;
+    min-width: 300px;
+    width: 300px;
+    max-width: 300px;
+    border: 2px solid black;
+    border-color: black;
+    background-color: white;
+    color: black;
+}
+
+.contenidoPrincipal input {
     height: 28px;
     min-height: 28px;
     padding: 4px;
@@ -53,7 +54,7 @@ textarea, input {
     min-height: 100px;
 }
 
-main button {
+.contenidoPrincipal main button {
     color: white;
     background-color: #2C2C2C;
     font-size: 16px;
@@ -63,7 +64,7 @@ main button {
     transition: 0.2s;
 }
 
-main button:hover {
+.contenidoPrincipal main button:hover {
     background-color: #1d1d1d;
     cursor: pointer;
 }

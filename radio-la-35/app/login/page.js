@@ -1,187 +1,172 @@
 "use client";
 
-import "./page.css";
-import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import styles from "./page.module.css";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const [menuActive, setMenuActive] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   const router = useRouter();
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    const adminFlag = localStorage.getItem("is_admin");
-    if (token) setIsLoggedIn(true);
-    if (adminFlag === "true") setIsAdmin(true);
-  }, []);
-
   // Verificar si está guardada la sesión
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    if (token) setIsLoggedIn(true);
-  }, []);
+    if (token) router.push("/");
+  }, [router]);
 
   const handleLoginSubmit = async (e) => {
-      e.preventDefault();
-      try {
-          const res = await fetch(`${API_URL}/auth/login`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, password }),
-          });
+    e.preventDefault();
 
-          if (!res.ok) {
-              const errorBody = await res.text(); 
-              
-              try {
-                  const errorData = JSON.parse(errorBody);
-                  alert(`Fallo en el inicio de sesión: ${res.status} - ${errorData.error || "Error desconocido"}`);
-              } catch (e) {
-                  console.error("Respuesta no JSON:", errorBody);
-                  alert(`Fallo en el inicio de sesión: El servidor devolvió una respuesta no válida. Código: ${res.status}`);
-              }
-              return;
-          }
+    try {
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-          const data = await res.json(); 
+      const data = await res.json();
 
-          if (res.ok && data.session?.access_token) {
-            localStorage.setItem("access_token", data.session.access_token);
-            localStorage.setItem("user_email", email);
+      if (!res.ok) {
+        alert(data.error || "Error al iniciar sesión");
+        return;
+      }
 
-            if (data.userName) {
-              localStorage.setItem("user_name", data.userName); 
-            } else {
-              localStorage.removeItem("user_name");
-            }
+      localStorage.setItem("access_token", data.session.access_token);
+      localStorage.setItem("user_email", email);
 
-            if (data.isAdmin) {
-              localStorage.setItem("is_admin", "true");
-            } else {
-              localStorage.removeItem("is_admin");
-            }
+      if (data.userName) {
+        localStorage.setItem("user_name", data.userName);
+      }
 
-            alert("Inicio de sesión exitoso");
-            router.push("/");
-          }
-          else {
-            alert(data.error || "Error al iniciar sesión");
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      };
+      if (data.isAdmin) {
+        localStorage.setItem("is_admin", "true");
+      }
+
+      alert("Inicio de sesión exitoso");
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+      alert("Error de conexión");
+    }
+  };
 
   const handleRegisterSubmit = async (e) => {
-      e.preventDefault();
-      try {
-          const res = await fetch(`${API_URL}/auth/register`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, password, userName }),
-          });
+    e.preventDefault();
 
-          if (!res.ok) {
-              const errorText = await res.text();
-              console.error("Error del servidor:", errorText);
-              alert(`Fallo en el registro: ${res.status} - ${errorText}`);
-              return; 
-          }
+    try {
+      const res = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, userName }),
+      });
 
-          const data = await res.json(); 
-
-          if (data.user) {
-            const loginRes = await fetch(`${API_URL}/auth/login`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, password }),
-            });
-            const loginData = await loginRes.json();
-
-            if (loginRes.ok && loginData.session?.access_token) {
-              localStorage.setItem("access_token", loginData.session.access_token);
-              localStorage.setItem("user_email", email);
-
-              if (loginData.userName) {
-                localStorage.setItem("user_name", loginData.userName);
-              } else {
-                localStorage.removeItem("user_name");
-              }
-
-              if (loginData.isAdmin) {
-                localStorage.setItem("is_admin", "true");
-              } else {
-                localStorage.removeItem("is_admin");
-              }
-
-              alert("Cuenta creada e inicio de sesión exitoso");
-              router.push("/");
-            }
-          }
-          else {
-            alert("Fallo en el registro: Datos no válidos.");
-          }
-          
-      } catch (error) {
-          console.error("Error de red o procesamiento:", error);
-          alert("Ocurrió un error al intentar registrarte.");
+      if (!res.ok) {
+        const text = await res.text();
+        alert(text);
+        return;
       }
+
+      // Auto login
+      await handleLoginSubmit(e);
+    } catch (error) {
+      console.error(error);
+      alert("Error al registrarse");
+    }
   };
 
   return (
-    <div>
-      
-      <main className="login-container">
-        {showLogin ? (
-          <div className="tarjeta">
-            <h2>Iniciar sesión</h2>
+    <main className={styles.contenedor}>
+      {showLogin ? (
+        <div className={styles.card}>
+          <h2 className={styles.titulo}>Iniciar sesión</h2>
 
-            <form onSubmit={handleLoginSubmit}>
-              <input type="email" placeholder="Correo" required value={email} onChange={(e) => setEmail(e.target.value)} />
-              <input type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} />
+          <form className={styles.formulario} onSubmit={handleLoginSubmit}>
+            <input
+              className={styles.input}
+              type="email"
+              placeholder="Correo"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-              <button type="submit" className="btn">Iniciar sesión</button>
-            </form>
+            <input
+              className={styles.input}
+              type="password"
+              placeholder="Contraseña"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-            <p className="switch-text">
-              ¿No tienes cuenta?{" "}
-              <button className="switch-btn" onClick={() => setShowLogin(false)}>
-                Registrarte
-              </button>
-            </p>
-          </div>
-        ) : (
-          <div className="tarjeta">
-            <h2>Crear cuenta</h2>
+            <button className={styles.boton} type="submit">
+              Iniciar sesión
+            </button>
+          </form>
 
-            <form onSubmit={handleRegisterSubmit}>
-              <input type="text" placeholder="Nombre" required value={userName} onChange={(e) => setUserName(e.target.value)} />
-              <input type="email" placeholder="Correo" required value={email} onChange={(e) => setEmail(e.target.value)} />
-              <input type="password" placeholder="Contraseña" required value={password} onChange={(e) => setPassword(e.target.value)} />
+          <p className={styles.switchTexto}>
+            ¿No tienes cuenta?{" "}
+            <button
+              className={styles.switchBoton}
+              onClick={() => setShowLogin(false)}
+            >
+              Registrarte
+            </button>
+          </p>
+        </div>
+      ) : (
+        <div className={styles.card}>
+          <h2 className={styles.titulo}>Crear cuenta</h2>
 
-              <button type="submit" className="btn">Registrarse</button>
-            </form>
+          <form className={styles.formulario} onSubmit={handleRegisterSubmit}>
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Nombre"
+              required
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
 
-            <p className="switch-text">
-              ¿Ya tienes una cuenta?{" "}
-              <button className="switch-btn" onClick={() => setShowLogin(true)}>
-                Iniciar sesión
-              </button>
-            </p>
-          </div>
-        )}
-      </main>
-    </div>
+            <input
+              className={styles.input}
+              type="email"
+              placeholder="Correo"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            <input
+              className={styles.input}
+              type="password"
+              placeholder="Contraseña"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <button className={styles.boton} type="submit">
+              Registrarse
+            </button>
+          </form>
+
+          <p className={styles.switchTexto}>
+            ¿Ya tienes una cuenta?{" "}
+            <button
+              className={styles.switchBoton}
+              onClick={() => setShowLogin(true)}
+            >
+              Iniciar sesión
+            </button>
+          </p>
+        </div>
+      )}
+    </main>
   );
 }

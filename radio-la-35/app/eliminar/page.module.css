@@ -1,0 +1,131 @@
+/* ===== LAYOUT ===== */
+.contenedor {
+  width: 75%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  margin: 0;
+}
+
+/* ===== ENLACES ===== */
+.volver {
+  padding: 0.5rem 1rem;
+  background-color: #d44994;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* ===== ESTADOS ===== */
+.verificacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+}
+
+.mensajeCentral {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+}
+
+/* ===== TABLA ===== */
+.wrapperTabla {
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla thead tr {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.tabla th,
+.tabla td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.tabla th:last-child,
+.tabla td:last-child {
+  text-align: center;
+}
+
+/* ===== BOTONES ===== */
+.botonEliminar {
+  padding: 0.5rem 1rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.botonEliminar:hover {
+  background-color: #c82333;
+}
+
+.botonCancelar {
+  padding: 0.5rem 1.5rem;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===== MODAL ===== */
+.overlayModal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #2a1a72;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  border: 2px solid #d44994;
+}
+
+.tituloModal {
+  margin-bottom: 1rem;
+}
+
+.textoModal {
+  margin-bottom: 2rem;
+}
+
+.accionesModal {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}

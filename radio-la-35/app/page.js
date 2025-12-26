@@ -1,12 +1,9 @@
 "use client";
 
 import "./page.css";
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 
 export default function Home() {
-  const [menuActive, setMenuActive] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [isAdmin, setIsAdmin] = useState(false);
@@ -23,19 +20,8 @@ export default function Home() {
     if (token) setIsLoggedIn(true);
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("user_email");
-    localStorage.removeItem("is_admin");
-    setIsLoggedIn(false);
-    setIsAdmin(false);
-    router.push("/"); // opcional: volver al inicio
-  };
-
-
   return (
-    <div>      
-      <main className="contenido">
+      <main className="contenido-principal">
         <section className="blog">
           <div className="bloque"></div>
           <h2>Blog</h2>
@@ -58,7 +44,5 @@ export default function Home() {
           </p>
         </section>
       </main>
-
-          </div>
   );
 }

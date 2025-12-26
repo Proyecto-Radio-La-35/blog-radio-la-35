@@ -1,0 +1,155 @@
+/* ===== LAYOUT ===== */
+.contenedor {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.volver {
+  margin-bottom: 2rem;
+}
+
+.volver a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== TÍTULO ===== */
+.titulo {
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #fff;
+}
+
+/* ===== ESTADOS ===== */
+.mensajeCentral {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.enlacePrimario {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* ===== FORMULARIO ===== */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grupoFormulario {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.requerido {
+  color: red;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.textoAyuda {
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+/* ===== ACCIONES ===== */
+.acciones {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.botonSubmit {
+  padding: 0.75rem 2.5rem;
+  font-size: 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.botonSubmit:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.botonCancelar {
+  padding: 0.75rem 2.5rem;
+  font-size: 1rem;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.botonCancelar:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.botonSubmit:disabled,
+.botonCancelar:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ===== FOOTER ===== */
+.notaFormulario {
+  text-align: center;
+  color: #666;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,55 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.contenedor {
+  width: 75%;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* ===== TÍTULO ===== */
+.titulo {
+  font-size: 2.5rem;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+/* ===== INTRODUCCIÓN ===== */
+.intro {
+  margin-top: 24px;
+  font-size: 1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ddd;
+}
+
+/* ===== GRID ===== */
+.programasGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  justify-items: center;
+  margin: 50px 0;
+}
+
+/* ===== TARJETA DE PROGRAMA ===== */
+.programaCard {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.programaCard:hover {
+  transform: translateY(-5px);
+}
+
+.programaCard h3 {
+  margin-top: 15px;
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: #fff;
+}

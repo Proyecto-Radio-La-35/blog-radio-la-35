@@ -1,0 +1,102 @@
+/* ===== LAYOUT ===== */
+.main {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.articulo {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== ESTADOS ===== */
+.mensajeCarga {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+}
+
+.contenedorError {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+.error {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* ===== NAVEGACIÓN ===== */
+.contenedorVolver {
+  margin-bottom: 1rem;
+}
+
+.enlaceVolver {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.botonVolver {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* ===== CABECERA ===== */
+.tipo {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.titulo {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: #666;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== IMAGEN ===== */
+.wrapperImagen {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.imagen {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* ===== CONTENIDO ===== */
+.contenido {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  white-space: pre-wrap;
+}
