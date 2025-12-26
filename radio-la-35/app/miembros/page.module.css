@@ -48,6 +48,11 @@
   transform: translateY(-5px);
 }
 
+.avatar {
+  border: 3px solid #d44994;
+  border-radius: 50%;
+}
+
 /* ===== TEXTO ===== */
 .nombre {
   margin-top: 15px;
