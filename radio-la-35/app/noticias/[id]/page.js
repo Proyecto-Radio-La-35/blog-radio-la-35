@@ -81,8 +81,8 @@ export default function PublicacionDetalle() {
     return (
       <div className={styles.contenedorError}>
         <p className={styles.error}>{mensaje}</p>
-        <Link href="/blog" className={styles.botonVolver}>
-          Volver al Blog
+        <Link href="/noticias" className={styles.botonVolver}>
+          Volver a Noticias
         </Link>
       </div>
     );
@@ -91,7 +91,7 @@ export default function PublicacionDetalle() {
   return (
     <main className={styles.main}>
       <div className={styles.contenedorVolver}>
-        <Link href="/blog" className={styles.enlaceVolver}>
+        <Link href="/noticias" className={styles.enlaceVolver}>
           ← Volver al listado
         </Link>
       </div>
@@ -109,8 +109,8 @@ export default function PublicacionDetalle() {
             <Image 
               src={publicacion.imagen} 
               alt={publicacion.titulo} 
-              width={800} 
-              height={450} 
+              fill
+              sizes="(max-width: 768px) 100vw, 500px"
               className={styles.imagen}
             />
           </div>

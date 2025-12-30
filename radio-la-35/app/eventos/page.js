@@ -60,7 +60,7 @@ export default function Eventos() {
         <div className={styles.grid}>
           {eventos.map((evento) => (
             <article key={evento.id_publicacion} className={styles.card}>
-              <div className={styles.imageWrapper}>
+              <div className={styles.wrapperImagen}>
                 <Image
                   src={evento.imagen || "/radio_la_35.png"}
                   alt={evento.titulo}

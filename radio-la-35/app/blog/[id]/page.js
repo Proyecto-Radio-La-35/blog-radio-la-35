@@ -187,8 +187,9 @@ export default function PublicacionDetalle() {
           <div className={styles.wrapperImagen}>
             <Image
               src={publicacion.imagen}
-              alt={publicacion.titulo}
+              alt={publicacion.titulo} 
               fill
+              sizes="(max-width: 768px) 100vw, 500px"
               className={styles.imagen}
             />
           </div>

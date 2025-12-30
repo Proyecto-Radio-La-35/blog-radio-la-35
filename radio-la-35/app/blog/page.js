@@ -67,7 +67,7 @@ export default function Blog() {
       ) : (
         <div className={styles.grid}>
           {entradas.map((entrada) => (
-            <article key={entrada.publicacion_id} className={styles.card}>
+            <article key={entrada.id_publicacion} className={styles.card}>
               <div className={styles.wrapperImagen}>
                 <Image
                   src={entrada.imagen || "/radio_la_35.png"}
