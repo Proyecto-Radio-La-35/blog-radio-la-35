@@ -39,11 +39,13 @@
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
+  margin-bottom: 100px;
 }
 
 /* ===== TABLA ===== */
 .wrapperTabla {
   overflow-x: auto;
+  margin-bottom: 100px;
 }
 
 .tabla {

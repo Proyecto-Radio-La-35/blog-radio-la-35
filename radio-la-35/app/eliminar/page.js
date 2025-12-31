@@ -17,6 +17,10 @@ export default function EliminarContenido() {
   const searchParams = useSearchParams();
   const tipo = searchParams.get("tipo");
 
+  const nombreSingular = tipo === "comentarios" ? "Comentario" : "Publicación";
+  const nombrePlural = tipo === "comentarios" ? "comentarios" : "publicaciones";
+  const campoTitulo = tipo === "comentarios" ? "Mensaje" : "Título";
+
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
@@ -41,12 +45,19 @@ export default function EliminarContenido() {
   const cargarPublicaciones = async () => {
     setLoadingPublicaciones(true);
     try {
+      const token = localStorage.getItem("access_token");
+
       const url =
         tipo === "comentarios"
-          ? `${API_URL}/comentarios/todos`
+          ? `${API_URL}/contenido/comentarios/todos`
           : `${API_URL}/contenido?tipo=${tipo}`;
 
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       const data = await response.json();
 
       if (data.success) {
@@ -78,7 +89,7 @@ export default function EliminarContenido() {
       const data = await response.json();
 
       if (data.success) {
-        alert("Publicación eliminada exitosamente");
+        alert("Eliminación exitosa");
         setShowModal(false);
         setSelectedId(null);
         cargarPublicaciones(); // Recargar la lista
@@ -86,7 +97,7 @@ export default function EliminarContenido() {
         alert("Error al eliminar: " + data.error);
       }
     } catch {
-      alert("Error al eliminar la publicación");
+      alert(`Error al eliminar ${nombreSingular.toLocaleLowerCase}`);
     }
   };
 
@@ -125,11 +136,11 @@ export default function EliminarContenido() {
 
         {loadingPublicaciones ? (
           <div className={styles.mensajeCentral}>
-            Cargando publicaciones...
+            Cargando {nombrePlural}...
           </div>
         ) : publicaciones.length === 0 ? (
           <div className={styles.mensajeCentral}>
-            No hay publicaciones de tipo “{tipo}” para eliminar
+            No hay {tipo} para eliminar
           </div>
         ) : (
           <div className={styles.wrapperTabla}>
@@ -137,7 +148,7 @@ export default function EliminarContenido() {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Título</th>
+                  <th>{campoTitulo}</th>
                   <th>Fecha de creación</th>
                   <th>Acción</th>
                 </tr>
@@ -189,7 +200,7 @@ export default function EliminarContenido() {
           <div className={styles.modal}>
             <h2 className={styles.tituloModal}>Confirmar eliminación</h2>
             <p className={styles.textoModal}>
-              ¿Estás seguro de que deseas eliminar esta publicación? Esta acción
+              ¿Estás seguro de que deseas eliminar esto? Esta acción
               no se puede deshacer.
             </p>
             <div className={styles.accionesModal}>
