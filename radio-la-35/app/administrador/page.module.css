@@ -84,6 +84,14 @@
   margin-top: 4rem;
 }
 
+.agregarAdmin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0 3rem;
+}
+
 .inputAdmin {
   padding: 0.5rem;
   width: 250px;
@@ -103,25 +111,79 @@
 }
 
 /* ===== LISTA ADMIN ===== */
-.listaAdmin {
+.listaAdmins {
   list-style: none;
   padding: 0;
   margin-top: 1rem;
+  color: black;
 }
 
 .itemAdmin {
-  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.6rem;
+  background-color: #f5f5f5;
+  border-radius: 6px;
 }
 
+/* ===== BOTONES ===== */
 .botonEliminar {
-  margin-left: 1rem;
-  padding: 0.2rem 0.5rem;
-  background-color: #e53935;
+  padding: 0.5rem 1rem;
+  background-color: #dc3545;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
 }
 
 .botonEliminar:hover {
-  background-color: #d32f2f;
+  background-color: #c82333;
+}
+
+.botonCancelar {
+  padding: 0.5rem 1.5rem;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===== MODAL ===== */
+.overlayModal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #2a1a72;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  border: 2px solid #d44994;
+}
+
+.tituloModal {
+  margin-bottom: 1rem;
+}
+
+.textoModal {
+  margin-bottom: 2rem;
+}
+
+.accionesModal {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
 }

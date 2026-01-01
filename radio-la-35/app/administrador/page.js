@@ -11,24 +11,25 @@ export default function Administrador() {
   const [isLoading, setIsLoading] = useState(true);
   const [adminEmailInput, setAdminEmailInput] = useState("");
   const [adminsList, setAdminsList] = useState([]);
+  const [adminAEliminar, setAdminAEliminar] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const router = useRouter();
-  const userEmail =
-    typeof window !== "undefined"
-      ? localStorage.getItem("user_email")
-      : null;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  
+  const fetchAdmins = async () => {
+    const res = await fetch(`${API_URL}/admins/list`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        "Content-Type": "application/json"
+      }
+    });
 
-  // Fetch de admins
-  useEffect(() => {
-    async function fetchAdmins() {
-      const res = await fetch("/admins/list", {
-        headers: { "x-admin-email": userEmail },
-      });
-      const data = await res.json();
-      setAdminsList(data.admins);
-    }
-    fetchAdmins();
-  }, [userEmail]);
+    if (!res.ok) return;
+
+    const data = await res.json();
+    setAdminsList(data.admins ?? []);
+  };
 
   // Revisar permisos
   useEffect(() => {
@@ -46,12 +47,18 @@ export default function Administrador() {
     setIsLoading(false);
   }, [router]);
 
+  // Fetch de admins
+  useEffect(() => {
+    if (!isAdmin) return;
+    fetchAdmins();
+  }, [isAdmin]);
+
   const handleAddAdmin = async () => {
-    const res = await fetch("/admins/add", {
+    const res = await fetch(`${API_URL}/admins/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-admin-email": userEmail,
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
       },
       body: JSON.stringify({ email: adminEmailInput }),
     });
@@ -64,11 +71,11 @@ export default function Administrador() {
   };
 
   const handleRemoveAdmin = async (email) => {
-    const res = await fetch("/admins/remove", {
+    const res = await fetch(`${API_URL}/admins/remove`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-admin-email": userEmail,
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
       body: JSON.stringify({ email }),
     });
@@ -76,7 +83,10 @@ export default function Administrador() {
     const data = await res.json();
     if (!res.ok) return alert(data.error);
 
-    setAdminsList(data.admins);
+    setShowModal(false);
+
+    // 🔁 volver a pedir la lista real
+    await fetchAdmins();
   };
 
   // Mostrar loading mientras verifica permisos
@@ -88,6 +98,7 @@ export default function Administrador() {
   if (!isAdmin) return null;
 
   return (
+    <>
     <main className={styles.contenedor}>
       <h1 className={styles.titulo}>Dashboard</h1>
 
@@ -133,28 +144,33 @@ export default function Administrador() {
       </div>
 
       <div className={styles.seccionAdmin}>
-        <h2>Administradores</h2>
+        <h2 className={styles.tituloSeccion}>Administradores</h2>
 
         <h3>Agregar administrador</h3>
-        <input
-          className={styles.inputAdmin}
-          type="email"
-          placeholder="Email del administrador"
-          value={adminEmailInput}
-          onChange={(e) => setAdminEmailInput(e.target.value)}
-        />
-        <button className={styles.botonAgregar} onClick={handleAddAdmin}>
-          Agregar
-        </button>
+        <div className={styles.agregarAdmin}>
+          <input
+            className={styles.inputAdmin}
+            type="email"
+            placeholder="Email del administrador"
+            value={adminEmailInput}
+            onChange={(e) => setAdminEmailInput(e.target.value)}
+          />
+          <button className={styles.botonAgregar} onClick={handleAddAdmin}>
+            Agregar
+          </button>
+        </div>
 
         <h3>Administradores actuales</h3>
         <ul className={styles.listaAdmins}>
-          {adminsList.map((email) => (
+          {Array.isArray(adminsList) && adminsList.map((email) => (
             <li key={email} className={styles.itemAdmin}>
               {email}
               <button
                 className={styles.botonEliminar}
-                onClick={() => handleRemoveAdmin(email)}
+                onClick={() => {
+                  setAdminAEliminar(email);
+                  setShowModal(true)
+                }}
               >
                 Eliminar
               </button>
@@ -163,5 +179,34 @@ export default function Administrador() {
         </ul>
       </div>
     </main>
+
+    {showModal && (
+        <div className={styles.overlayModal}>
+          <div className={styles.modal}>
+            <h2 className={styles.tituloModal}>Confirmar eliminación</h2>
+            <p className={styles.textoModal}>
+              ¿Estás seguro de que deseas eliminar al administrador {adminAEliminar}? Esta acción
+              no se puede deshacer.
+            </p>
+            <div className={styles.accionesModal}>
+              <button
+                className={styles.botonCancelar}
+                onClick={() => {
+                  setShowModal(false);
+                }}
+              >
+                Cancelar
+              </button>
+              <button
+                className={styles.botonEliminar}
+                onClick={() => handleRemoveAdmin(adminAEliminar)}
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
